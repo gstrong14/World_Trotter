@@ -52,6 +52,27 @@ class ConversionViewController: UIViewController, UITextFieldDelegate{
         
         updateCelsiusLable()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        let hour = NSCalendar.current.component(.hour, from: NSDate() as Date)
+        
+        let morning = UIColor(red: 100/255, green: 100/255, blue: 100/255, alpha: 1.0)
+        let midDay = UIColor(red: 200/255, green: 200/255, blue: 255/255, alpha: 1.0)
+        let Evening = UIColor(red: 100/255, green: 100/255, blue: 100/255, alpha: 1.0)
+        
+        switch hour {
+        case 6..<11: view.backgroundColor = morning
+            break
+        case 12..<18: view.backgroundColor = midDay
+            break
+        case 18..<24: view.backgroundColor = Evening
+            break
+        default: view.backgroundColor = midDay
+        }
+        
+    }
 
     let numberFormatter: NumberFormatter = {
         let nf = NumberFormatter()
